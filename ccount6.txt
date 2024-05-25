@@ -1,0 +1,8 @@
+choice
+1
+5
+sa sj sk sa sa
+2
+sb  sc
+12
+3

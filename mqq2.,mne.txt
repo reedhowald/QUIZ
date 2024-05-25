@@ -1,0 +1,27 @@
+
+
+Pick at least four correct statements  about the simple cubic equation: 
+           y = -1*x3 + 0.5*x2 + 14.5*x – 14 
+from the list below.  If you can, do this without making more than one wrong choice in the process. 
+
+
+sa     When x is large and positive y is large and positive
+sb     When x is large and positive y is negative and large
+sc     When x is negative and large y is negative and large
+sd     When x is negative and large y is positive and large
+se     When x is zero y is large and negative
+sf     When x is zero y is 14
+sg     When x is zero y is -14
+sh    When x is zero the slope dy/dx is -14.5
+si     When x is zero the slope dy/dx is -14
+sj     When x is zero the slope dy/dx is +14.5
+sk    When x is 1 the value of y is 0
+sl     When x is 1 the value of y is -1 
+sm   The equation for the slope is a quadratic
+sn    The equation for the slope is a cubic
+so    The equation for the slope is:
+         dy/dx = -3x2 + 2x + 14.5
+
+
+
+
