@@ -1,0 +1,4 @@
+test = ‘a b c d-‘
+ii = 0
+tt = test[ii]
+ptint(tt, ii)
