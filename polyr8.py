@@ -63,7 +63,7 @@ class QuizWindow(QMainWindow):
 # filepath is read from controlstart.txt twice.  Here and at line 1694
 
         # f = open('c:/Users/Reed Howald/desktop/file1/outfile.txt', 'a')
-        filepathi = 'C:/Users/Reed Howald/desktop/8poly/'
+        filepathi = './'
                                          #         filepathi = 'C:/Users/Reed Howald/Desktop/'
         f = open(filepathi + 'controlstart.txt', 'r')
         filepath = f.readline()
@@ -81,7 +81,7 @@ class QuizWindow(QMainWindow):
         filepath = str(filepath)
         z = len(filepath) - 1
         filepath = filepath[:z]
-        filepathb = 'C:/Users/Reed Howald/desktop/3file/'
+        filepathb = '../3file/'
         print('85 filepathb is ', filepathb, filepath)
 
 #         n 'C:/Users/Reed Howald/desktop/filew/'
@@ -632,7 +632,7 @@ class QuizWindow(QMainWindow):
 #         fchoice.close()   replaced by better code
 #         print('631 filepath is ', filepath, filepath)
 #         if filepath == filepathb:
-        filepathb = 'C:/Users/Reed Howald/desktop/3file/'
+        filepathb = '../3file/'
         with open(filepath + 'choice.txt', 'w')as f:
             f.write(choice)
         with open(filepathb + 'choice.txt', 'w')as f:
@@ -2027,7 +2027,8 @@ print('2016 his is a polynomial quiz ')
 # currentrun = 'runfoot.rne'
 # currentmenu = 'menuf3.mne'
 # f = open('c:/Users/Reed Howald/desktop/file1/outfile.txt', 'a')
-filepathi = 'C:/Users/Reed Howald/Desktop/8poly/'
+# filepathi = 'C:/Users/Reed Howald/Desktop/8poly/'
+filepathi = './'
 f = open(filepathi+'controlstart.txt', 'r')
 filepath=f.readline()
 currentrun=f.readline()
