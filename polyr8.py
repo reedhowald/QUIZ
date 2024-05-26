@@ -414,7 +414,7 @@ class QuizWindow(QMainWindow):
         ihx3 = int(setf5[4][9])
 #         ihx3 = setcolumn
         ihx4 = ihx3 + int(colori) - 1
-        print('415 ihx4 is   ', ihx4, ihx3, colori)
+        print('415 ihx4 ihx3 colori is   ', ihx4, ihx3, colori)
         print('416 tx8 and ihx4 are ', str(tx8), ihx4, str(tx9))
         colorarray = [tx8, tx9, txa, txb, tx8]
         headerstring = headerstring + tx1 + tx2 + ' Column ' + str(ihx4) + sp + ' is now ' + tx3 + \
