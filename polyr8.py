@@ -1574,7 +1574,7 @@ def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ct
     w = QuizWindow()
     w.content.setPixmap(QPixmap(pic))
     w.show()
-    app.exec_()
+    app.exec_() # soon to be replaced with exec() without the underscore
     fchoice = open(filepath+ 'choice.txt', 'r')
     choice = fchoice.read()
     z = len(choice) - 1
