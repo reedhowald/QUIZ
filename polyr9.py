@@ -4,19 +4,19 @@
 # for more you should become a registered user
 # For conditions, instructions, and  help see the file registerwithmii.doc
 # second, the start of program actions
-# we need to import some important outside programs, we need pandas and PySide2
+# we need to import some important outside programs, we need pandas and PySide6
 import pandas as pd
 from pandas import ExcelWriter
 from pandas import ExcelFile
-from PySide2.QtCore import Qt, Slot, QTimer
-from PySide2.QtGui import QPixmap, QFont, QValidator, QGuiApplication
-from PySide2.QtWidgets import (QAction, QApplication, QVBoxLayout,
+from PySide6.QtCore import Qt, Slot, QTimer
+from PySide6.QtGui import QPixmap, QFont, QValidator, QGuiApplication, QAction,
+from PySide6.QtWidgets import (QApplication, QVBoxLayout,
                                QLabel, QMainWindow, QWidget, QFileDialog, QLineEdit)
 import time
 from datetime import timedelta
 # Third we must define and set the graphical user interface we will use
 # it is called quizwindow.  You don't need to understand how it works
-# but PySide2 is a powerful set of programming available in python and
+# but PySide6 is a powerful set of programming available in python and
 # other popular programming languages.
 class QuizWindow(QMainWindow):
     """
