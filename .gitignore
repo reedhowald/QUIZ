@@ -1,2 +1,9 @@
 /Lib
 /Scripts
+.DS_Store
+/ir.txt
+/ivy.txt
+/outfile.txt
+/tdone.txt
+/tmc.txt
+/ty1.txt
