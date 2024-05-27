@@ -1,0 +1,10 @@
+type two letters to select one of these 22 options:
+min 0   max 255  sug 173 
+You have entered three color values  They are saved  Type nb
+pick a new value for the color red
+pick a new value for the color green
+pick a new value for the color blue  
+You have entered three color values. They are saved. Type nb
+dv   decrease the value   
+pick a new value for the color red:
+pick a new value for the color red:
