@@ -1572,7 +1572,14 @@ def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ct
 #     app = QA
 #     pplication()
     w = QuizWindow()
-    w.content.setPixmap(QPixmap(pic))
+    # w.content.setScaledContents(True)
+    fullSizePixMap = QPixmap(pic)
+    # screenSizePixMap = fullSizePixMap.scaledToHeight(w.height())
+    screenSizePixMap = fullSizePixMap.scaled(w.width(), w.height(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation) # alternate Qt.IgnoreAspectRatio Qt.FastTransformation
+    w.content.setPixmap(screenSizePixMap)
+    # test = QPicture()
+    # test.load(pic)
+    # w.content.setPicture(test)
     w.show()
     app.exec_() # soon to be replaced with exec() without the underscore
     fchoice = open(filepath+ 'choice.txt', 'r')
