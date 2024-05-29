@@ -140,6 +140,9 @@ class QuizWindow(QMainWindow):
                               "<li>set_incorrect_answers()</li>"
                               "<li>set_partial_credit()</li>"
                               "<ul>")
+        ## keep the previous content to compare in the resizing function
+        self.lastContentSize = self.content.size()
+        self.prevPic = None
         # Set the font size
         font = QFont()
         font.setPointSize(20)
@@ -599,8 +602,13 @@ class QuizWindow(QMainWindow):
         If a current picture is set, scale it for the current content size and display it
         :return: None
         """
-        if self.picture_shown is not None:
-            self.content.setPixmap(self.picture_shown.scaled(self.content.size(), aspectMode=Qt.KeepAspectRatio))
+        if self.picture_shown is not None and (self.content.size() != self.lastContentSize or self.picture_shown != self.prevPic):
+            # Qt.FastTransformation makes text very unreadable
+            # Qt.KeepAspectRatioByExpanding fills up the current self.content from the origin of the pixmap (will truncate on small screens)
+            print('QuizWindow::update_scaled_picture self.content.size is: (' + str(self.content.width()) + ', ' + str(self.content.height()) + ')')
+            self.content.setPixmap(self.picture_shown.scaled(self.content.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation))
+            self.lastContentSize = self.content.size()
+            self.prevPic = self.picture_shown
     def show_text(self, text):
         """
         Replaces current content with a text string
@@ -1573,15 +1581,10 @@ def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ct
 #     pplication()
     w = QuizWindow()
     # w.content.setScaledContents(True)
-    fullSizePixMap = QPixmap(pic)
-    # screenSizePixMap = fullSizePixMap.scaledToHeight(w.height())
-    screenSizePixMap = fullSizePixMap.scaled(w.width(), w.height(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation) # alternate Qt.IgnoreAspectRatio Qt.FastTransformation
-    w.content.setPixmap(screenSizePixMap)
-    # test = QPicture()
-    # test.load(pic)
-    # w.content.setPicture(test)
+    w.show_picture(pic)
     w.show()
-    app.exec_() # soon to be replaced with exec() without the underscore
+    print('after show ... width: ' + str(w.content.width()) + ' height: ' + str(w.content.height()))
+    app.exec() # soon to be replaced with exec() without the underscore
     fchoice = open(filepath+ 'choice.txt', 'r')
     choice = fchoice.read()
     z = len(choice) - 1
