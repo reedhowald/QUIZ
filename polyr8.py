@@ -1583,6 +1583,8 @@ def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ct
     # w.content.setScaledContents(True)
     w.show_picture(pic)
     w.show()
+    # FORCE resizing picture?
+    w.update_scaled_picture()
     print('after show ... width: ' + str(w.content.width()) + ' height: ' + str(w.content.height()))
     app.exec() # soon to be replaced with exec() without the underscore
     fchoice = open(filepath+ 'choice.txt', 'r')
