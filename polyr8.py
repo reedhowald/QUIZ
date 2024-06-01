@@ -1238,12 +1238,12 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
                 pic = filepathb + runf[1][3]
             print('1227 setf5[5][9] ie ', setf5[5][9], ir, pic)
             display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
-            printf("1241 dorunf recursion (display): " + filepath + " " + filepathb)
+            print("1241 dorunf recursion (display): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
         elif runf[ir][iy] == 'pause':
             time.sleep = runf[ir][2]
             ir = ir + 1
-            printf("1246 dorunf recursion (pause): " + filepath + " " + filepathb)
+            print("1246 dorunf recursion (pause): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #             quit()
         elif runf[ir][iy] == 'menu':
@@ -1268,7 +1268,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 
 #             ik = 3
             print('did menu with ', ik)
-            printf("1271 dorunf recursion (menu): " + filepath + " " + filepathb)
+            print("1271 dorunf recursion (menu): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel,filepathb, ira, irb, fpk)
 #             return()
         elif runf[ir][iy] == 'quit':
@@ -1337,7 +1337,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 #         w.show()
 #         app.exec_()
             ir = ir+1
-            printf("1340 dorunf recursion (count): " + filepath + " " + filepathb)
+            print("1340 dorunf recursion (count): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
         elif runf[ir][iy] == 'change':
             print('1195 change with ir =', ir)
@@ -1422,7 +1422,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 #             value = setg6.iloc[ivz +1, ihx + 4]
 #             print('1043 value is ', value, ivy, ihx, ivz)
 #             setf5[ivy][ihx] = value
-            printf("1425 dorunf recursion (change): " + filepath + " " + filepathb)
+            print("1425 dorunf recursion (change): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 
         elif runf[ir][iy] == 'edit':
@@ -1466,7 +1466,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
         elif runf[ir][iy] == 'skip':
             print('1451 using skip command')
             ir = ir+1
-            printf("1469 dorunf recursion (skip): " + filepath + " " + filepathb)
+            print("1469 dorunf recursion (skip): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb,fpk )
             return()
 
@@ -1517,7 +1517,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
                 f2.write(str(ivz) + '\n')
                 f2.write(str(setline) + '\n')
             print('1502 finish writetosetf5() setline is ', setline, ivz)
-            printf("1520 dorunf recursion (writetosetf5): " + filepath + " " + filepathb)
+            print("1520 dorunf recursion (writetosetf5): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
             return ()
 #         elif runf[ir][iy] == 'change':
@@ -1531,7 +1531,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
         ir = ir + 1
 #         quit()
 #         return()
-        printf("1534 dorunf recursion (fall through?) " + choice + ": " + filepath + " " + filepathb)
+        print("1534 dorunf recursion (fall through?) " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     elif runf[ir][0] == 'quit':
 #         quit()
@@ -1583,7 +1583,7 @@ def editf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctex
 #     with open('runfoot.rne', 'w') as f:
 #       writer = csv.writer(f)
 #       writer.writerows(setf5)
-    printf("1586 editf: " + filepath + " " + filepathb)
+    print("1586 editf: " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk):
 # Subroutine to display a picture on the screen
@@ -1620,24 +1620,24 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
     f.close()
     if choice == '4':
         ir = ir + 1
-        printf("1623 checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1623 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '1':
         ir = ir + 1
-        printf("1627 checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1627 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk)
 # This is a shortcut for anyone who finds nx too cumbersome to type
     elif choice == '2':
         ir = ir + 2
-        printf("1632 (skip ahead) checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1632 (skip ahead) checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '8':
         ir = ir - 1
-        printf("1636 (-1) checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1636 (-1) checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '7':
         ir = ir - 2
-        printf("1640 (-2) checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1640 (-2) checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '3':
         print('1612 choice of ', choice, ira, irb,ir)
@@ -1665,11 +1665,11 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
 #         pic = runf[1][3]
         pic = filepath + pic
         print('1636 pic is ', pic, ir , choice)
-        printf("1668 checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1668 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '9':
         ir = 0
-        printf("1672 checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1672 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '0':
         print('closing the python program')
@@ -1681,7 +1681,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
         rbrestart(currentrun, currentmenu, filepath, ir, begin)
     elif choice == '6':
         ir = ir + 1
-        printf("1684 checkchoice " + choice + ": " + filepath + " " + filepathb)
+        print("1684 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     iv = 1
     print(menuf[1][4],' Line 1653 ', menuf[1][5])
@@ -1764,7 +1764,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
             print('1730 ir = ', ir, iz, iv, ira)
 #             pic = runf[ir][17]
             print(pic)
-            printf("1767 checkchoice " + choice + ": " + filepath + " " + filepathb)
+            print("1767 checkchoice " + choice + ": " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
             iv = 197
         print(iv)
@@ -1786,7 +1786,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
     display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     print('In checkchoice with an invalid choice of  ', choice)
 #     return()
-    printf("1789 checkchoice " + choice + ": " + filepath + " " + filepathb)
+    print("1789 checkchoice " + choice + ": " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 
 def writeexcel(setf5, filename, ir, f, filepath, editrun):
@@ -1895,7 +1895,7 @@ def change(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, cte
     #
 #     switchba(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
     print("1861 ira is ", ira, irb, choice)
-    printf("1898 change " + choice + ": " + filepath + " " + filepathb)
+    print("1898 change " + choice + ": " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     quit()
 #     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel)
@@ -1931,7 +1931,7 @@ def editg(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctex
 
 
     ir = ir + 1
-    printf("1934 editg " + choice + ": " + filepath + " " + filepathb)
+    print("1934 editg " + choice + ": " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 
 def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, ctexcel, filepathb, ira, irb, fpk):
