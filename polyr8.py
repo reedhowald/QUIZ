@@ -1998,16 +1998,24 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
     print('1960 right choice is ', choice, ccx, cho )
     print('RIGHT CHOICE WITH ', choice, ccc, runf[5][9])
 # check for a duplicate cnoice
+    # DO NOT add to ccy list of correct answers
     ii = 0
-    print('1964 ccw is ',ccw,' this ', ccn, ccm, ccw, ccy  )
+    print('2002 ccw is ',ccw,' this ', ccn, ccm, ccw, ccy, choice, chold  )
 #     test = czz[ii]
-    z = len(ccy) - 1
-    ccy = ccy[:z]
+#     z = len(ccy) - 1
+    ccy = ccy[:-1]
     ccw = ccw[0:-1]
-    ccw = int(ccw) + 1
-#     ccy = ccy[0:-1]
-    ccy = ccy + ' ' + str(choice)
-    print('1972 ccw is now ', ccw, ccy)
+    # ONLY add chold to ccy (correct answers) if it wasn't already there
+    if chold not in ccy:
+        ccw = int(ccw) + 1
+        ccy = ccy + ' ' + str(chold)
+    print('2012 ccw is now ', ccw, ccy)
+
+    # REMOVE chold from list of wrong answers
+    ccn = ccn[:-1]
+    if chold in ccm:
+        ccn = str(int(ccn) - 1)
+        ccm = ccm.replace(' ' + chold, '')
 
 #     ccn = int(ccn) + 1
 #     ccy = ccy[0:-1]
@@ -2022,14 +2030,14 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
     with open(filepath + 'ccount.txt','w') as f2:
         f2.write(str(cho) + '')
         f2.write(str(ccc) + '')
-        f2.write(str(ccn) + '')
+        f2.write(str(ccn) + '\n')
         f2.write(str(ccm) + '')
         f2.write(str(ccw) + '\n')
         f2.write(str(ccy) + '\n')
         f2.write(str(czz) + ' ')
         f2.write(str(czy) + '\n')
         f2.close()
-#     return()
+    #     return()
     wa = 'wrong   ' + ccn + '  ' + ccm
     wb = 'correct ' + str(ccw) + '  ' + ccy
     with open(filepath + 'tmc.txt', 'w') as f2:
