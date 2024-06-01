@@ -502,6 +502,7 @@ class QuizWindow(QMainWindow):
             ir = ir + 1
             choice = 'nb'
 #             change(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel)
+            print('505: ' + filepath + ' ' + filename + ' ' + filepath + currentrun)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel)
 #         self.user_keys.setFocus()
 #         if runf[1][9] == 16:
@@ -1111,6 +1112,7 @@ def readfiles(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, 
 #     initialize2(setf5)
     fchoice = open(filepath+ 'choice.txt', 'r+')
     print("1104 ira is ", ira, irb, fpk)
+    print("1115 readfiles: " + filepath + currentrun)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk)
 #     app = QApplication()
 #     w = QuizWindow()
@@ -1139,13 +1141,14 @@ def switchba(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, c
     print('1129 ira is now ', ira, i5, filepath)
     ir = ira
     return()
+    print("1144 switchba: " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb)
 
 def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk):
 #     irc = lnt(setf5[5][9])
     fchoice = open(filepath + 'choice.txt', 'r')
     choice = fchoice.read()
-    print('1139 dorunf() with ir = ', ir, choice, runf[ir][4], ira)
+    print('1151 dorunf() with ir = ', ir, choice, runf[ir][4], ira)
     if int(ir) > 27:
         quit()
     ik = 1
@@ -1187,7 +1190,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 #                 pic = setf5[ir][3]
 #                 print(ir,' = ir  1164' , pic, runf[3][11], setf5[3][11])
 #                 pic = filepathb+setf5[ir][3]
-            fchoice = choice
+            prevChoice = choice
             if int(runf[3][10]) == 62:
                 pic = filepath + runf[ir][3]
                 print('1184 used 62 ', runf[3][10], runf[3][11])
@@ -1235,10 +1238,12 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
                 pic = filepathb + runf[1][3]
             print('1227 setf5[5][9] ie ', setf5[5][9], ir, pic)
             display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
+            print("1241 dorunf recursion (display): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
         elif runf[ir][iy] == 'pause':
             time.sleep = runf[ir][2]
             ir = ir + 1
+            print("1246 dorunf recursion (pause): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #             quit()
         elif runf[ir][iy] == 'menu':
@@ -1263,6 +1268,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 
 #             ik = 3
             print('did menu with ', ik)
+            print("1271 dorunf recursion (menu): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel,filepathb, ira, irb, fpk)
 #             return()
         elif runf[ir][iy] == 'quit':
@@ -1315,7 +1321,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
             readfiles(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk, currentrun)
 #         app = QApplication()  # Create an application
         elif runf[ir][iy] == 'count':
-            print('1309 in count   fchoice is ', fchoice , ir)
+            print('1309 in count   prevChoice is ', fchoice , ir)
         #         show_picture(self, pic)
 #         display(runf, menuf, pic, choice)
 #         self.show_picture(pic)
@@ -1331,6 +1337,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 #         w.show()
 #         app.exec_()
             ir = ir+1
+            print("1340 dorunf recursion (count): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
         elif runf[ir][iy] == 'change':
             print('1195 change with ir =', ir)
@@ -1391,7 +1398,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
                     f2.write(str(setline) + '\n')
 #                 f2.write(irb)
                 setg6 = pd.read_excel(filepath + 'runcommands.xls')
-                setg6
+                # setg6
                 print('1249 setg6.iloc[2,5] = ', setg6.iloc[2,5])
                 print('at line 1299 with ', choice)
 # I need to find the current value for setf5[ivy][ihx] in setg6
@@ -1415,6 +1422,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
 #             value = setg6.iloc[ivz +1, ihx + 4]
 #             print('1043 value is ', value, ivy, ihx, ivz)
 #             setf5[ivy][ihx] = value
+            print("1425 dorunf recursion (change): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 
         elif runf[ir][iy] == 'edit':
@@ -1458,6 +1466,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
         elif runf[ir][iy] == 'skip':
             print('1451 using skip command')
             ir = ir+1
+            print("1469 dorunf recursion (skip): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb,fpk )
             return()
 
@@ -1508,6 +1517,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
                 f2.write(str(ivz) + '\n')
                 f2.write(str(setline) + '\n')
             print('1502 finish writetosetf5() setline is ', setline, ivz)
+            print("1520 dorunf recursion (writetosetf5): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
             return ()
 #         elif runf[ir][iy] == 'change':
@@ -1521,6 +1531,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
         ir = ir + 1
 #         quit()
 #         return()
+        print("1534 dorunf recursion (fall through?) " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     elif runf[ir][0] == 'quit':
 #         quit()
@@ -1572,6 +1583,7 @@ def editf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctex
 #     with open('runfoot.rne', 'w') as f:
 #       writer = csv.writer(f)
 #       writer.writerows(setf5)
+    print("1586 editf: " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk):
 # Subroutine to display a picture on the screen
@@ -1608,19 +1620,24 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
     f.close()
     if choice == '4':
         ir = ir + 1
+        print("1623 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '1':
         ir = ir + 1
+        print("1627 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, ctexcel, filepathb, ira, irb, fpk)
 # This is a shortcut for anyone who finds nx too cumbersome to type
     elif choice == '2':
         ir = ir + 2
+        print("1632 (skip ahead) checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '8':
         ir = ir - 1
+        print("1636 (-1) checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '7':
         ir = ir - 2
+        print("1640 (-2) checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '3':
         print('1612 choice of ', choice, ira, irb,ir)
@@ -1648,9 +1665,11 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
 #         pic = runf[1][3]
         pic = filepath + pic
         print('1636 pic is ', pic, ir , choice)
+        print("1668 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '9':
         ir = 0
+        print("1672 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     elif choice == '0':
         print('closing the python program')
@@ -1662,6 +1681,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
         rbrestart(currentrun, currentmenu, filepath, ir, begin)
     elif choice == '6':
         ir = ir + 1
+        print("1684 checkchoice " + choice + ": " + filepath + " " + filepathb)
         dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
     iv = 1
     print(menuf[1][4],' Line 1653 ', menuf[1][5])
@@ -1744,6 +1764,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
             print('1730 ir = ', ir, iz, iv, ira)
 #             pic = runf[ir][17]
             print(pic)
+            print("1767 checkchoice " + choice + ": " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
             iv = 197
         print(iv)
@@ -1765,6 +1786,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
     display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     print('In checkchoice with an invalid choice of  ', choice)
 #     return()
+    print("1789 checkchoice " + choice + ": " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 
 def writeexcel(setf5, filename, ir, f, filepath, editrun):
@@ -1873,6 +1895,7 @@ def change(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, cte
     #
 #     switchba(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
     print("1861 ira is ", ira, irb, choice)
+    print("1898 change " + choice + ": " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     quit()
 #     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel)
@@ -1908,6 +1931,7 @@ def editg(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctex
 
 
     ir = ir + 1
+    print("1934 editg " + choice + ": " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 
 def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, ctexcel, filepathb, ira, irb, fpk):
@@ -1943,7 +1967,7 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
     if runf[5][9] != 15:
         ccn = int(ccn) + 1
         ccm = ccm[0:-1]
-        ccm = ccm + ' ' + chold
+        ccm = ccm + ' ' + str(choice)
         print('1933 ccn is now ', ccn , ccm)
         print('1934 cchold is ', chold, choice, ccy)
         if czy == 2:
@@ -1974,20 +1998,28 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
     print('1960 right choice is ', choice, ccx, cho )
     print('RIGHT CHOICE WITH ', choice, ccc, runf[5][9])
 # check for a duplicate cnoice
+    # DO NOT add to ccy list of correct answers
     ii = 0
-    print('1964 ccw is ',ccw,' this ', ccn, ccm, ccw, ccy  )
+    print('2002 ccw is ',ccw,' this ', ccn, ccm, ccw, ccy, choice, chold  )
 #     test = czz[ii]
-    z = len(ccy) - 1
-    ccy = ccy[:z]
+#     z = len(ccy) - 1
+    ccy = ccy[:-1]
     ccw = ccw[0:-1]
-    ccw = int(ccw) + 1
-#     ccy = ccy[0:-1]
-    ccy = ccy + ' ' + str(chold)
-    print('1972 ccw is now ', ccw, ccy)
+    # ONLY add chold to ccy (correct answers) if it wasn't already there
+    if chold not in ccy:
+        ccw = int(ccw) + 1
+        ccy = ccy + ' ' + str(chold)
+    print('2012 ccw is now ', ccw, ccy)
+
+    # REMOVE chold from list of wrong answers
+    ccn = ccn[:-1]
+    if chold in ccm:
+        ccn = str(int(ccn) - 1)
+        ccm = ccm.replace(' ' + chold, '')
 
 #     ccn = int(ccn) + 1
-    ccy = ccy[0:-1]
-    ccy = ccy + ' ' + chold2
+#     ccy = ccy[0:-1]
+#     ccy = ccy + ' ' + chold2
     print('1977 ccn is now ', ccn, ccm)
     print('1978 cchold is ', chold, choice, ccy)
     if czy == 2:
@@ -1998,14 +2030,14 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
     with open(filepath + 'ccount.txt','w') as f2:
         f2.write(str(cho) + '')
         f2.write(str(ccc) + '')
-        f2.write(str(ccn) + '')
+        f2.write(str(ccn) + '\n')
         f2.write(str(ccm) + '')
         f2.write(str(ccw) + '\n')
         f2.write(str(ccy) + '\n')
         f2.write(str(czz) + ' ')
         f2.write(str(czy) + '\n')
         f2.close()
-#     return()
+    #     return()
     wa = 'wrong   ' + ccn + '  ' + ccm
     wb = 'correct ' + str(ccw) + '  ' + ccy
     with open(filepath + 'tmc.txt', 'w') as f2:
