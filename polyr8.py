@@ -2012,7 +2012,7 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
 #     ccn = int(ccn) + 1
 #     ccy = ccy[0:-1]
 #     ccy = ccy + ' ' + chold2
-    prlint('1977 ccn is now ', ccn, ccm)
+    print('1977 ccn is now ', ccn, ccm)
     print('1978 cchold is ', chold, choice, ccy)
     if czy == 2:
         return ()
