@@ -92,9 +92,9 @@ class QuizWindow(QMainWindow):
         fr = open(filepath + 'ccount.txt', 'r')
         cho = fr.readline()
         ccc = fr.readline()
-        ccn = fr.readline()
+        ccn = int(fr.readline())
         ccm = fr.readline()
-        ccw = fr.readline()
+        ccw = int(fr.readline())
         ccy = fr.readline()
         czz = fr.readline()
         czy = fr.readline()
@@ -104,19 +104,17 @@ class QuizWindow(QMainWindow):
         setfocus = runf[4][11]
         print('105', setline, setcolumn, setfocus)
         z = len(czy) - 1
-        print('107 ccm is ', ccm, czz)
+        print('107 ccm is ', ccm, ccw, czz)
         czy = czy[:z]
-        z = len(ccn) -1
-        ccn = ccn[:z]
+        #z = len(ccn) -1
+        #ccn = ccn[0:z]
         self.input = QLineEdit()
-#         if runf[3][8] == 837:
-#             self.inut.setFocus()
-        print('111 runf[4][10] is ', runf[4][10], runf[4][9])
-#         self.input.returnPressed.connect(self.on_user_input)
-
-        #         readcsvfile(filename, setf5)
-        print('115 in Quizwindow   ',setf5[1][3], setf5[1][6])
-        print('line 116 width and height at ', runf[0][15], ' ', runf[0][14])
+#                    self.inut.setFocus()
+        print('113 ccn is  :', ccn, ': and ccm :', ccm, ccw )
+        #z = len(ccw) - 1
+        #ccw = ccw[:-1]
+        print('116 in Quizwindow   ',setf5[1][3], setf5[1][6], ccw)
+        print('line 118 width and height at ', runf[0][15], ' ', runf[0][14])
         # TODO: Set to the size the user chose last time.
         geometry = QGuiApplication.primaryScreen().availableGeometry()
         self.resize(geometry.width() // float(str(runf[0][15])), geometry.height() // float(str(runf[0][14])))
@@ -175,11 +173,15 @@ class QuizWindow(QMainWindow):
 #             self.input.setFocus()
         self.resetfocus(self, setfocus)
         setfocus = int(setfocus)
-        z = len(ccn) - 1
-        ccn = ccn[:z]
+        print('178 runf[6][11] is ', runf[6][11], 'ccn', ccn, 'ccm', ccm, 'ccw', ccw, 'ccy', ccy, runf[6][12])
+        print(type(ccn))
+        #z = len(ccn) - 1
+        #ccn = ccn[:-1]
+        print('180 runf[6][11] is ', runf[6][11], 'ccn', ccn, 'ccm', ccm, 'ccw', ccw, 'ccy', ccy, runf[6][12])
+
         sp = ' '
-        z = len(ccw) - 1
-        ccw = ccw[:z]
+        #z = len(ccw) - 1
+        #ccw = ccw[:z]
 #             print('150 setfocus = ', setfocus)
         print('177 setfocus = ', setfocus)
         self.input.returnPressed.connect(self.on_user_input)
@@ -258,7 +260,7 @@ class QuizWindow(QMainWindow):
         headerstring = txf + choice
         if runf[6][11] == 11:
             headerstring = txf + '  row is ' + str(ir)
-            print('257 header is:  ', headerstring, txf, choice)
+            print('263 header is:  ', headerstring, txf, choice)
 #         headerstring = 'You typed   ' + '  ' + str(choice)
 #         setting edit widget size
         if int(setf5[5][11]) == 193:
@@ -274,23 +276,23 @@ class QuizWindow(QMainWindow):
 #         font.setPointSize(int(str(runf[0][5])))
         self.header.setFont(font)
         acolon = ':'
+        print('279 ccw is ',ccw)
 
-        if int(runf[6][11]) == 25:
-            if int(runf[6][10]) == 155:
-                ccw = ccw + 1
-
-
+        print('281 runf[6][11] is  ', runf[6][11], runf[ir][13], ir)
+        if int(runf[6][11]) == 125:
+            if int(runf[ir][13]) == 15:
+#                 ccw = int(ccw) + 1
 #             headerstring = 'Congratulations! You picked a correct answer with '
-            headerstring = 'wrong' + sp + sp
-            headerstring = headerstring + ccn + acolon  + sp + ccm
-            headerstring = headerstring + 'correct' + sp + ccw + acolon + 'You typed  ' + ccy
-            print('282   headerstring is  ! ', headerstring)
-        print('283 runf[6][11] is ', runf[6][11], ccm, ccw, ccy, runf[6][12])
+                headerstring = 'wrong' + sp + sp
+                headerstring = headerstring + str(ccn) + acolon  + sp + ccm
+                headerstring = headerstring + 'correct' + sp + sp + str(ccw) + acolon + sp + ccy + 'You typed  ' + choice
+            print('288   headerstring is  ! ', headerstring)
+        print('289 runf[6][11] is ', runf[6][11],'ccn', ccn,'ccm', ccm,'ccw', ccw,'ccy', ccy, runf[6][12])
         ii = 0
         if ccc == 3:
             tt = ccw[ii]
-            while ii < 5:
-                if choice == tt:
+            while ii < 5:00
+            if choice == tt:
 # dhoice is a duplicate
                     print('298 duplicate choice is  ', choice, ii, tt )
                     pic - dup.png
@@ -865,7 +867,8 @@ def readcsvfile(filename, xxxf):
 
     yf = pd.read_csv(filename, sep = '&')
 #         print ('read runf[3][4] as  ', xxff)
-    print(yf)
+    print(yf.to_string())
+#    display(yf)
 #     print('642 yf.iat[2,6]  = ', yf.iat[2,6])
 #     xreturn(filename, xxxf)
     imay = yf.iat[0,4]
@@ -1066,9 +1069,9 @@ def readfiles(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, 
     print('1056 setf5[4][11] = ', setf5[4][11], runf[4][11], filename3)
 #     readcsvfile(filename, getf5)
 #     print(runf[3][7])
-    print('1059 runf[4][11] is ', runf[4][11])
-    print('1060 setf5[2][6] = ', setf5[2][6])
-    print('1061 iz  ir =    ', ir)
+    print('1072 runf[5][9] is ', runf[5][9], runf[5][10])
+    print('1073 setf5[2][6] = ', setf5[2][6])
+    print('1074 iz  ir =    ', ir)
 #     open
 #     filename = 'runfoot.xls'
 #     writeexcel(setf5, filename, ir, f, filepath, editrun)
@@ -1194,7 +1197,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
             if int(runf[3][10]) == 62:
                 pic = filepath + runf[ir][3]
                 print('1184 used 62 ', runf[3][10], runf[3][11])
-                display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
+                display2(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #                 runf[3][11] = 192
             if int(setf5[5][9]) == 2:
                 pic = filepath + runf[iraa][3]
@@ -1237,7 +1240,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
             if setf5[5][9] == 10:
                 pic = filepathb + runf[1][3]
             print('1227 setf5[5][9] ie ', setf5[5][9], ir, pic)
-            display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
+            display2(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
             print("1241 dorunf recursion (display): " + filepath + " " + filepathb)
             dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
         elif runf[ir][iy] == 'pause':
@@ -1323,7 +1326,7 @@ def dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, getf5, cte
         elif runf[ir][iy] == 'count':
             print('1309 in count   prevChoice is ', fchoice , ir)
         #         show_picture(self, pic)
-#         display(runf, menuf, pic, choice)
+#         display2(runf, menuf, pic, choice)
 #         self.show_picture(pic)
 #         app = QApplication()  # Create an application
 #         quiz = QuizWindow()  # Create the quiz window
@@ -1585,7 +1588,7 @@ def editf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctex
 #       writer.writerows(setf5)
     print("1586 editf: " + filepath + " " + filepathb)
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
-def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk):
+def display2(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk):
 # Subroutine to display a picture on the screen
     print('1568 displaying ir = ', ir, ' and ', choice, pic , '  ', filepathb)
 # pic = 'C:/Users/Reed Howald/desktop/file1/footmenu1.png'
@@ -1605,7 +1608,7 @@ def display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ct
     if z > 1:
         choice = choice[:z]
     print("1581 returned with ", choice, ir, z)
-    print('in display() line 1582'
+    print('in display2() line 1582'
           ' with ', choice)
     fchoice.close()
 #     close(app)
@@ -1783,7 +1786,7 @@ def checkchoice(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5
     print('1743 a bad choice has been made typing ', choice)
     pic = 'abc.png'
     pic = filepath + pic
-    display(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
+    display2(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb, fpk)
 #     print('In checkchoice with an invalid choice of  ', choice)
 #     return()
     print("1789 checkchoice " + choice + ": " + filepath + " " + filepathb)
@@ -1935,41 +1938,41 @@ def editg(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctex
     dorunf(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, runbi, ctexcel, filepathb, ira, irb)
 
 def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, ctexcel, filepathb, ira, irb, fpk):
-    print('1901 !!IN ccount WITH choice = ', choice)
-    ccx = runf[5][8]
-    print('1903 ccx  IS ', ccx, choice)
-    if ccx != 12:
+    print('1941 !!IN ccount WITH choice = ', choice)
+    ccx = int(runf[ir][12])
+    print('1943 ccx  IS ', ccx, choice, ir)
+    if ccx != 114:
         return()
     fr = open(filepath +'ccount.txt', 'r')
     cho = fr.readline()
     ccc = fr.readline()
-    ccn = fr.readline()
+    ccn = int(fr.readline())
     ccm = fr.readline()
-    ccw = fr.readline()
+    ccw = int(fr.readline())
     ccy = fr.readline()
     czz = fr.readline()
     czy = fr.readline()
     fr.close()
 
-    print('1916 ccn is ', ccn, ccm, choice)
-    print('1917 ccw is  ', ccw, ccy)
+    print('1957 ccn is ', ccn, ccm, choice)
+    print('1958 ccw is  ', ccw, ccy)
 #     choice = string(choice)
     fchoice = open(filepath+ 'choice.txt', 'r')
     choice = fchoice.read()
     z = len(choice) - 1
     if z > 1:
         choice = choice[:z]
-
+    print('1965 runf[5][9] is ', runf[5][9], ccw, ccy)
     fc = open(filepath + 'chold.txt', "r")
     chold = fc.read()
     fd = open(filepath + 'chold2.txt', "r")
     chold2 = fd.read()
-    if runf[5][9] != 15:
+    if int(runf[5][9]) != 15:
         ccn = int(ccn) + 1
         ccm = ccm[0:-1]
-        ccm = ccm + ' ' + str(choice)
-        print('1933 ccn is now ', ccn , ccm)
-        print('1934 cchold is ', chold, choice, ccy)
+        ccm = ccm + ' ' + str(choice) + '\n'
+        print('1976 ccn is now ', ccn , ccm)
+        print('1977 cchold is ', chold, choice, ccy)
         if czy == 2:
             return()
 #         f2.write(str(ccw) + '\n')
@@ -1978,10 +1981,9 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
         with open(filepath + 'ccount.txt', 'w') as f2:
             f2.write(str(cho) + '')
             f2.write(str(ccc) + '')
-            f2.write(str(ccn) + '\n' )
-            f2.write(str(ccm) + '\n')
-
-            f2.write(str(ccw))
+            f2.write(str(ccn) + '\n')
+            f2.write(str(ccm) + '')
+            f2.write(str(ccw)+ '\n')
             f2.write(str(ccy))
             f2.write(str(czz) )
             f2.write(str(czy) )
@@ -1990,29 +1992,36 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
             ccn = int(ccn) + 1
             ccm = ccm[0:-1]
             ccm = ccm + ' ' + chold
-            print('1955 ccy is now ', ccy, czz)
+            print('1995 ccy is now ', ccy, czz)
 
-        return()
+            return()
+    print("1998 correct answer is ", choice , ccw, ccy)
+#     ccw = ccw + 1
+
+
+
+
+
   # main()
 # PROGRAM F0000OR CORRECT CHOICES
-    print('1960 right choice is ', choice, ccx, cho )
+    print('2997 right choice is ', choice, ccx, cho )
     print('RIGHT CHOICE WITH ', choice, ccc, runf[5][9])
 # check for a duplicate cnoice
     # DO NOT add to ccy list of correct answers
     ii = 0
-    print('2002 ccw is ',ccw,' this ', ccn, ccm, ccw, ccy, choice, chold  )
+    print('2012 ccw is ',ccw,' this ', ccn, ccm, ccw, ccy, choice, chold  )
 #     test = czz[ii]
 #     z = len(ccy) - 1
     ccy = ccy[:-1]
-    ccw = ccw[0:-1]
+    #ccw = ccw[0:-1]
     # ONLY add chold to ccy (correct answers) if it wasn't already there
     if chold not in ccy:
         ccw = int(ccw) + 1
         ccy = ccy + ' ' + str(chold)
-    print('2012 ccw is now ', ccw, ccy)
+    print('2021 ccw is now ', ccw, ccy)
 
     # REMOVE chold from list of wrong answers
-    ccn = ccn[:-1]
+    #ccn = ccn[:-1]
     if chold in ccm:
         ccn = str(int(ccn) - 1)
         ccm = ccm.replace(' ' + chold, '')
@@ -2020,8 +2029,8 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
 #     ccn = int(ccn) + 1
 #     ccy = ccy[0:-1]
 #     ccy = ccy + ' ' + chold2
-    print('1977 ccn is now ', ccn, ccm)
-    print('1978 cchold is ', chold, choice, ccy)
+    print('2032 ccn is now ', ccn, ccm)
+    print('1033 cchold is ', chold, choice, ccy)
     if czy == 2:
         return ()
     #         f2.write(str(ccw) + '\n')
@@ -2035,10 +2044,10 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
         f2.write(str(ccw) + '\n')
         f2.write(str(ccy) + '\n')
         f2.write(str(czz) + ' ')
-        f2.write(str(czy) + '\n')
+        f2.write(str(czy) + '')
         f2.close()
     #     return()
-    wa = 'wrong   ' + ccn + '  ' + ccm
+    wa = 'wrong   ' + str(ccn) + '  ' + ccm
     wb = 'correct ' + str(ccw) + '  ' + ccy
     with open(filepath + 'tmc.txt', 'w') as f2:
         f2.write(wa)
@@ -2047,27 +2056,27 @@ def ccount(runf, menuf, ir, pic, choice, fchoice, filepath, setf5, f, detf5, cte
 
 
 
-    print('1996 cho ccc are ', cho, ccc)
-    print('1997 ccn ccm are ', ccn, ccm)
-    print('1998 ccw ccy are ', ccw, ccy)
-    print('1999 czz czy are ', czz, czy)
+    print('2059 cho ccc are ', cho, ccc)
+    print('2060 ccn ccm are ', ccn, ccm)
+    print('2061 ccw ccy are ', ccw, ccy)
+    print('2062 czz czy are ', czz, czy)
 #     s5 = fr.readline()
     return()
 #     s7 = fr.readline()
 #     s8 = fr.readline()
 #     fr.close()
-    print('2005 ccount.txt has been written with czz = ', czz)
+    print('2068 ccount.txt has been written with czz = ', czz)
 
 
 
 
 
     return()
-
-# Here is the starting place for poly7.py!!!!
+# here is the beginning main()
+# Here is the starting place for poly8r.py!!!!
 # the following print statement will fe the first thing this python program does
-print('2015 starting the program polyr8.py')
-print('2016 his is a polynomial quiz ')
+print('2078 starting the program polyr8.py')
+print('2079 his is a polynomial quiz ')
 # currentrun = 'runfoot.rne'
 # currentmenu = 'menuf3.mne'
 # f = open('c:/Users/Reed Howald/desktop/file1/outfile.txt', 'a')
@@ -2141,8 +2150,9 @@ fr = open(filepath + 'ccountbegin.txt', 'r')
 cho = fr.readline()
 ccc = fr.readline()
 ccn = fr.readline()
+ccn=int(ccn)
 ccm = fr.readline()
-ccw = fr.readline()
+ccw = int(fr.readline())
 ccy = fr.readline()
 czz = fr.readline()
 czy = fr.readline()
@@ -2151,16 +2161,16 @@ fr.close()
 with open(filepath + 'ccount.txt', 'w') as f2:
     f2.write(str(cho) + '')
     f2.write(str(ccc) + '')
-    f2.write(str(ccn))
+    f2.write(str(ccn) + '\n')
     f2.write(str(ccm) + '')
-    f2.write(str(ccw) + '')
+    f2.write(str(ccw) + '\n')
     f2.write(str(ccy) + '')
     f2.write(str(czz) + '')
     f2.write(str(czy) + '')
     f2.close()
 
-wa = 'wrong   ' + ccn + '  ' + ccm
-wb = 'correct ' + ccw + '  ' + ccy
+wa = 'wrong   ' + str(ccn) + '  ' + ccm
+wb = 'correct ' + str(ccw) + '  ' + ccy
 with open(filepath + 'tmc.txt', 'w' ) as f2:
     f2.write(wa)
     f2.write(wb)
